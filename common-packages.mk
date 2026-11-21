@@ -137,7 +137,8 @@ PRODUCT_PACKAGES += \
 # RIL
 PRODUCT_PACKAGES += \
     libjson \
-    libprotobuf-cpp-full \
+    libprotobuf-cpp-full.vendor \
+    libprotobuf-cpp-lite.vendor \
     libsensorndkbridge
 
 # Utils

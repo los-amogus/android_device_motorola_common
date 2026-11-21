@@ -16,3 +16,6 @@ get_prop(rild, wifi_hal_prop)
 
 # /proc/bootinfo
 allow rild vendor_proc_hw:file r_file_perms;
+
+# /mnt/vendor
+allow rild mnt_vendor_file:dir search;

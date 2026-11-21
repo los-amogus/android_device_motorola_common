@@ -34,15 +34,15 @@ set_prop(vendor_moto_init_shell, vendor_mot_prop)
 allow vendor_moto_init_shell self:capability sys_module;
 allow vendor_moto_init_shell vendor_file:system module_load;
 
-# Start FPS HALs
+# Start/Stop FPS HALs
 #set_prop(vendor_moto_init_shell, vendor_ctl_fps_prop)
-allow vendor_moto_init_shell ctl_start_prop:property_service set;
+allow vendor_moto_init_shell { ctl_start_prop ctl_stop_prop }:property_service set;
 
 # /dev/esfp0
 allow vendor_moto_init_shell tee_device:chr_file { getattr setattr };
 
-# /proc/meminfo
-allow vendor_moto_init_shell proc_meminfo:file r_file_perms;
+# /proc/cmdline (modprobe) and /proc/meminfo
+allow vendor_moto_init_shell { proc_cmdline proc_meminfo }:file r_file_perms;
 
 # ro.boot.product.hardware.sku
 set_prop(vendor_moto_init_shell, vendor_sku_prop)
