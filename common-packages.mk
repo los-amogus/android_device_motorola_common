@@ -69,11 +69,10 @@ endif
 PRODUCT_PACKAGES += \
     libexpat.vendor
 
-# FIXME: master: compat for libprotobuf
-# See https://android-review.googlesource.com/c/platform/prebuilts/vndk/v28/+/1109518
+# Compat for libprotobuf (provided by hardware/lineage/compat)
 PRODUCT_PACKAGES += \
-    libprotobuf-cpp-full-3.9.1-vendorcompat \
-    libprotobuf-cpp-full-vendorcompat
+    libprotobuf-cpp-full-vendorcompat \
+    libprotobuf-cpp-lite-vendorcompat
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
@@ -113,26 +112,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libnetutils.vendor
 
-# NFC
-ifeq ($(call device-has-characteristic,nfc),true)
-  PRODUCT_PACKAGES += \
-      com.android.nfc_extras \
-      libchrome.vendor \
-      NfcNci \
-      SecureElement \
-      Tag
-endif
-
 # OSS Time services
 PRODUCT_PACKAGES += \
     timekeep \
-    TimeKeep \
+    TimeKeep
 
 # Overlays
 ## Common Overlays
 PRODUCT_PACKAGES += \
     CommonFrameworksOverlay \
-    CommonSettingsOverlay
+    CommonSettingsOverlay \
+    NoNearbySharingOverlay
 
 ## HFR
 ifeq ($(call device-has-characteristic, hfr),true)
@@ -140,25 +130,12 @@ ifeq ($(call device-has-characteristic, hfr),true)
       CommonHFRSettingsOverlay
 endif
 
-## Platform Overlays
-PRODUCT_PACKAGES += \
-    PlatformFrameworksOverlay \
-    PlatformSettingsOverlay \
-    PlatformSystemUIOverlay
-
-## Device Overlays
-PRODUCT_PACKAGES += \
-    $(DEVICE)FrameworksOverlay \
-    $(DEVICE)SettingsOverlay \
-    $(DEVICE)SystemUIOverlay
-
 # Power
 PRODUCT_PACKAGES += \
     libpower.vendor
 
 # RIL
 PRODUCT_PACKAGES += \
-    ims-moto-libs \
     libjson \
     libprotobuf-cpp-full \
     libsensorndkbridge

@@ -15,6 +15,9 @@
 # Common path
 COMMON_PATH := device/motorola/common
 
+# Utils
+include $(COMMON_PATH)/utils.mk
+
 # A/B OTA dexopt update_engine hookup
 AB_OTA_POSTINSTALL_CONFIG ?= \
     RUN_POSTINSTALL_system=true \
@@ -72,11 +75,7 @@ PRODUCT_PACKAGES += \
 
 # FSTab Handling
 ## Define suffix for fstab
-ifeq ($(PRODUCT_USES_QCOM_HARDWARE),true) # QCOM uses qcom
-  FSTAB_SUFFIX := qcom
-else ifeq ($(PRODUCT_USES_MTK_HARDWARE),true) # MTK uses board platform
-  FSTAB_SUFFIX := $(TARGET_BOARD_PLATFORM)
-endif
+FSTAB_SUFFIX := qcom
 
 ## Select fstab path based on vendor_boot and recovery's existence
 fstab_path := $(PLATFORM_COMMON_PATH)/rootdir/$(call select-fstab)
@@ -126,16 +125,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml
 
-# Mediatek
-ifeq ($(PRODUCT_USES_MTK_HARDWARE),true)
-  include $(COMMON_PATH)/hardware/mediatek/product.mk
-endif
-
-# NFC
-ifneq (,$(filter $(TARGET_USES_NXP_NFC) $(TARGET_USES_ST_NFC) $(TARGET_USES_SEC_NFC), true))
-  DEVICE_CHARACTERISTICS += nfc
-endif
-
 # QCOM
 ifeq ($(PRODUCT_USES_QCOM_HARDWARE),true)
   include $(COMMON_PATH)/hardware/qcom/product.mk
@@ -146,12 +135,14 @@ TARGET_RECOVERY_FSTAB := $(fstab_path)
 
 # Rootdir
 $(call copy-files-recursive,$(COMMON_PATH)/rootdir/vendor,$(TARGET_COPY_OUT_VENDOR))
-$(call copy-files-recursive,$(DEVICE_PATH)/vendor,$(TARGET_COPY_OUT_VENDOR))
+ifneq ($(DEVICE_PATH),)
+  ifneq ($(wildcard $(DEVICE_PATH)/vendor),)
+    $(call copy-files-recursive,$(DEVICE_PATH)/vendor,$(TARGET_COPY_OUT_VENDOR))
+  endif
+endif
 $(call copy-files-recursive,$(PLATFORM_COMMON_PATH)/rootdir/vendor,$(TARGET_COPY_OUT_VENDOR))
 
 # SKUs
-## With NFC
-$(call add-device-sku,n,nfc)
 ## Default Without NFC
 $(call add-device-sku-inner,d)
 

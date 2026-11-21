@@ -15,12 +15,10 @@
 # Common path
 COMMON_PATH := device/motorola/common
 
-# Hardware
-## Mediatek
-ifeq ($(PRODUCT_USES_MTK_HARDWARE),true)
-  include $(COMMON_PATH)/hardware/mediatek/board.mk
-endif
+# Utils
+include $(COMMON_PATH)/utils.mk
 
+# Hardware
 ## QCOM
 ifeq ($(PRODUCT_USES_QCOM_HARDWARE),true)
   include $(COMMON_PATH)/hardware/qcom/board.mk
@@ -158,42 +156,19 @@ BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 ifeq ($(PRODUCT_USES_QCOM_HARDWARE),true)
   BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor_qcom
 endif
-ifeq ($(PRODUCT_USES_MTK_HARDWARE),true)
-  BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor_mtk
-endif
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
 
 # VINTF
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/manifest.xml
-ifeq ($(TARGET_USES_AUDIO_V7_0),true)
-  DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/android.hardware.audio_v7.0.xml
-else
-  DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/android.hardware.audio_v6.0.xml
-endif
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/android.hardware.audio_v6.0.xml
 ifneq ($(TARGET_USES_FINGERPRINT_V2_1),false)
   DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/android.hardware.biometrics.fingerprint_v2.1.xml
 endif
-ifeq ($(PRODUCT_USES_MTK_HARDWARE),true)
-  DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/manifest-mtk.xml
-  TARGET_USES_TETHER_V1_1 := true
-else
-  ifeq ($(call is-kernel-greater-than-or-equal-to,5.10),true)
-    DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/manifest-qcom-5.10.xml
-  else
-    DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/manifest-qcom.xml
-  endif
-  ifeq ($(TARGET_USES_CAMERA_V2_4),true)
-    DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/android.hardware.camera.provider_v2.4.xml
-  endif
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/manifest-qcom.xml
+ifeq ($(TARGET_USES_CAMERA_V2_4),true)
+  DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/android.hardware.camera.provider_v2.4.xml
 endif
-ifeq ($(TARGET_USES_TETHER_V1_1),true)
-  DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/tether_v1.1.xml
-else
-  DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/tether_v1.0.xml
-endif
-ifeq ($(TARGET_SUPPORTS_NFC),true)
-  DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/android.hardware.nfc_v1.2.xml
-endif
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/tether_v1.0.xml
 
 ## Framework compatibility matrix: What the device(=vendor) expects of the framework(=system)
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += $(COMMON_PATH)/vintf/framework_compatibility_matrix.xml

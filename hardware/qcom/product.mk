@@ -155,7 +155,7 @@ PRODUCT_PACKAGES += \
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/audio/$(qcom_platform) \
-    vendor/qcom/opensource/data-ipa-cfg-mgr-legacy-um \
+    vendor/qcom/opensource/data-ipa-cfg-mgr-legacy \
     vendor/qcom/opensource/dataservices \
     vendor/qcom/opensource/display/$(qcom_platform) \
 

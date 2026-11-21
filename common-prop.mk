@@ -100,11 +100,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
 ifeq ($(PRODUCT_USES_QCOM_HARDWARE),true)
   PRODUCT_PROPERTY_OVERRIDES += \
       ro.vendor.hardware=qcom
-else ifeq ($(PRODUCT_USES_MTK_HARDWARE),true)
-  PRODUCT_PROPERTY_OVERRIDES += \
-      ro.vendor.hardware=mtk
 else
-  $(warning Neither MTK nor QCOM hardware has been selected!)
+  $(warning QCOM hardware has not been selected!)
   PRODUCT_PROPERTY_OVERRIDES += \
       ro.vendor.hardware=unknown
 endif
@@ -142,12 +139,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # One Handed-Mode
 PRODUCT_PRODUCT_OVERRIDES += \
     ro.support_one_handed_mode=true
-
-# Power HAL
-ifeq ($(PRODUCT_USES_MTK_HARDWARE),true)
-  PRODUCT_PROPERTY_OVERRIDES += \
-      vendor.powerhal.disp.idle_support=false
-endif
 
 # Priv-app permisisons
 PRODUCT_PROPERTY_OVERRIDES += \

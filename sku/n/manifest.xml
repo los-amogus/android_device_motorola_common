@@ -1,3 +1,0 @@
-<manifest version="1.0" type="device">
-<!-- Empty, nfc hals have their own fragments -->
-</manifest>

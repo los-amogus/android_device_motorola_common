@@ -70,13 +70,6 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss@2.0.vendor \
     android.hardware.gnss@2.1.vendor
 
-# Health
-ifeq ($(PRODUCT_USES_MTK_HARDWARE),true)
-  PRODUCT_PACKAGES += \
-      android.hardware.health@2.1-impl \
-      android.hardware.health@2.1-service
-endif
-
 # Lights HAL
 PRODUCT_PACKAGES += \
     android.hardware.lights-service.moto
@@ -98,28 +91,6 @@ PRODUCT_PACKAGES += \
 # Netmgrd
 PRODUCT_PACKAGES += \
     android.system.net.netd@1.1.vendor
-
-# NFC
-ifeq ($(call device-has-characteristic,nfc),true)
-  PRODUCT_PACKAGES += \
-      android.hardware.nfc@1.2.vendor \
-      android.hardware.secure_element@1.2.vendor
-endif
-
-## Specific Chips
-ifeq ($(TARGET_USES_NXP_NFC),true)
-  PRODUCT_PACKAGES += \
-      android.hardware.nfc-service.nxp
-endif
-ifeq ($(TARGET_USES_SEC_NFC),true)
-  PRODUCT_PACKAGES += \
-      android.hardware.nfc@1.2-service.samsung \
-      nfc_nci_samsung
-endif
-ifeq ($(TARGET_USES_ST_NFC),true)
-  PRODUCT_PACKAGES += \
-      android.hardware.nfc-service.st
-endif
 
 # Power
 PRODUCT_PACKAGES += \
@@ -154,12 +125,8 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@2.0.vendor
-
-ifneq ($(PRODUCT_USES_MTK_HARDWARE),true)
-  PRODUCT_PACKAGES += \
-      android.hardware.sensors@2.0-service.multihal
-endif
+    android.hardware.sensors@2.0.vendor \
+    android.hardware.sensors@2.0-service.multihal
 
 # Thermal HAL
 PRODUCT_PACKAGES += \
