@@ -69,10 +69,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libhidl_symlink
 
-## Create protobuf symlinks
-PRODUCT_PACKAGES += \
-    protobuf_symlinks
-
 # FSTab Handling
 ## Define suffix for fstab
 FSTAB_SUFFIX := qcom
