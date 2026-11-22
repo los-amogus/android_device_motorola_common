@@ -35,9 +35,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     bluetooth.profile.pan.nap.enabled=true \
     bluetooth.profile.pan.panu.enabled=true \
     bluetooth.profile.pbap.server.enabled=true \
-    bluetooth.profile.sap.server.enabled=true \
-    bluetooth.profile.tbs.server.enabled=true \
-    bluetooth.profile.vc.server.enabled=true
+    bluetooth.profile.sap.server.enabled=true
 
 ## Set the Bluetooth Class of Device
 # Service Field: 0x5A -> 90
@@ -61,12 +59,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapsize=512m \
     dalvik.vm.heaptargetutilization=0.6 \
     dalvik.vm.heapminfree=8m \
-    dalvik.vm.heapmaxfree=16m
+    dalvik.vm.heapmaxfree=16m \
+    dalvik.vm.usap_pool_enabled=true
 
 # Dex2oat
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat64.enabled=true \
     dalvik.vm.dex2oat-threads=6 \
+    dalvik.vm.dex2oat-cpu-set=0,1,2,3,4,5,6 \
+    dalvik.vm.boot-dex2oat-threads=6 \
+    dalvik.vm.background-dex2oat-threads=4 \
     dalvik.vm.image-dex2oat-threads=6
 
 # Display
@@ -120,13 +122,14 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.lmk.thrashing_limit=30 \
     ro.lmk.swap_free_low_percentage=10 \
-    ro.lmk.psi_partial_stall_ms=200 \
+    ro.lmk.psi_partial_stall_ms=70 \
     ro.lmk.swap_util_max=100 \
-    ro.lmk.threshold_decay=30 \
     ro.lmk.thrashing_limit_decay=50 \
     ro.lmk.critical_upgrade=true \
     ro.lmk.upgrade_pressure=40 \
-    ro.lmk.downgrade_pressure=60
+    ro.lmk.downgrade_pressure=60 \
+    ro.lmk.kill_heaviest_task=true \
+    ro.lmk.kill_timeout_ms=100
 
 # Kernel
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -151,7 +154,7 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.recovery.usb.fastboot.pid=2E81
 
 # RIL
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ril.subscription.types=NV,RUIM
 
 ## Enable advanced power saving for data connectivity
@@ -179,10 +182,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.sib16_support=1 \
     persist.vendor.radio.oem_socket=true \
     persist.vendor.radio.msgtunnel.start=true
-
-## Platform specific default properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.data.qmi.adb_logmask=0
 
 ## RemoteFS Storage
 # This property is needed for rmt_storage to look for fsg
