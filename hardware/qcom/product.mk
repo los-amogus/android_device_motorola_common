@@ -111,6 +111,10 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.allocator@3.0.vendor \
     vendor.qti.hardware.display.mapper@2.0.vendor
 
+# LiveDisplay
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@2.0-service-sdm
+
 # Media
 $(call inherit-product-if-exists, vendor/qcom/opensource/media/$(qcom_platform)/product.mk)
 TARGET_DISABLE_C2_CODEC := false
