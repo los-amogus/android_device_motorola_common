@@ -172,6 +172,9 @@ DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/tether_v1.0.xml
 
 ## Framework compatibility matrix: What the device(=vendor) expects of the framework(=system)
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += $(COMMON_PATH)/vintf/framework_compatibility_matrix.xml
+ifneq ($(wildcard vendor/lineage/config/device_framework_matrix.xml),)
+  DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/lineage/config/device_framework_matrix.xml
+endif
 DEVICE_MATRIX_FILE += $(COMMON_PATH)/vintf/compatibility_matrix.xml
 
 # Wi-Fi Concurrent STA/AP / Init
