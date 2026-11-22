@@ -1,2 +1,5 @@
 # Power
 vendor_internal_prop(vendor_power_prop);
+
+# Netmgrd
+vendor_internal_prop(vendor_net_qmi_prop);

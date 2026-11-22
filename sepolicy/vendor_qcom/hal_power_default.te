@@ -23,3 +23,6 @@ get_prop(hal_power_default, vendor_soc_name_prop)
 # EXPENSIVE_RENDERING setprop
 set_prop(hal_power_default, vendor_power_prop)
 
+# Schedtune (powerhint.json)
+allow hal_power_default cgroup:file r_file_perms;
+
