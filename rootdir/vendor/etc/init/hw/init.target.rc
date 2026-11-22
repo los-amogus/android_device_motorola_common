@@ -112,6 +112,9 @@ on boot
     # Set permissions for sec_nfc
     chown nfc nfc /dev/sec-nfc
     chmod 0770 /dev/sec-nfc
+    # Charging control
+    chown system system /sys/class/power_supply/battery/input_suspend
+    chmod 0664 /sys/class/power_supply/battery/input_suspend
 
 on post-fs-data
     setprop vold.post_fs_data_done 1
