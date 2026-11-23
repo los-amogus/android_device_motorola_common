@@ -101,7 +101,7 @@ PRODUCT_PACKAGES += \
 
 ifneq ($(TARGET_USES_PP_HAL),false)
   PRODUCT_PACKAGES += \
-      android.hardware.power-service.moto-common-libperfmgr
+      android.hardware.power-service.moto-common
 endif
 
 # QTI Haptics Vibrator
