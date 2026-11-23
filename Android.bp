@@ -4,3 +4,11 @@ soong_namespace {
         "hardware/google/pixel",
     ],
 }
+
+prebuilt_hidl_interfaces {
+    name: "hidl_moto_qcom_prebuilt_interfaces",
+    interfaces: [
+        "vendor.qti.hardware.dsp@1.0::IDspService",
+        "vendor.qti.hardware.wifi.wifilearner@1.0::IWifiStats",
+    ],
+}

@@ -50,7 +50,6 @@ endif
 TARGET_COMMON_QTI_COMPONENTS := \
     adreno \
     audio \
-    av \
     charging \
     display \
     dsprpcd \
@@ -70,7 +69,7 @@ TARGET_COMMON_QTI_COMPONENTS := $(filter-out $(TARGET_UNWANTED_QTI_COMPONENTS),$
 $(call soong_config_set,rmnetctl,old_rmnet_data,true)
 
 # Display
-$(call inherit-product, vendor/qcom/opensource/display/$(qcom_platform)/config/display-product.mk)
+$(call inherit-product, hardware/qcom/display/config/display-product.mk)
 $(call inherit-product, vendor/qcom/opensource/display-commonsys-intf/config/display-interfaces-product.mk)
 
 # FM
@@ -161,7 +160,8 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/audio/$(qcom_platform) \
     vendor/qcom/opensource/data-ipa-cfg-mgr-legacy \
     vendor/qcom/opensource/dataservices \
-    vendor/qcom/opensource/display/$(qcom_platform) \
+    hardware/qcom/display \
+    hardware/qcom/display/libdebug \
 
 ifeq ($(call is-kernel-less-than-or-equal-to,5.4),true)
   PRODUCT_SOONG_NAMESPACES += \

@@ -1,5 +1,5 @@
 # Display
--include vendor/qcom/opensource/display/$(qcom_platform)/config/display-board.mk
+-include hardware/qcom/display/config/display-board.mk
 
 # GPS
 TARGET_USES_HARDWARE_QCOM_GPS := false

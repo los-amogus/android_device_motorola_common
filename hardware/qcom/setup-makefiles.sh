@@ -34,6 +34,13 @@ if [ ! -f "${HELPER}" ]; then
 fi
 source "${HELPER}"
 
+function vendor_imports() {
+    cat <<EOF >>"$1"
+		"vendor/qcom/common/vendor/dsprpcd",
+		"vendor/qcom/common/vendor/qseecomd-legacy",
+EOF
+}
+
 # Initialize the helper
 setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}"
 
