@@ -32,6 +32,10 @@ cc_library {
         "libperfmgr",
         "libutils",
     ],
+    static_libs: [
+        "powerhal_flags-aconfig-cc",
+        "libaconfig_storage_read_api_cc",
+    ],
     defaults: [
         "moto_common_power_hal_cc_defaults"
     ],
@@ -61,8 +65,10 @@ cc_binary {
         "libfmq",
     ],
     static_libs: [
+        "libaconfig_storage_read_api_cc",
         "libgmock",
         "libgtest",
+        "powerhal_flags-aconfig-cc",
     ],
     srcs: [
         "aidl/BackgroundWorker.cpp",

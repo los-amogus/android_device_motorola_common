@@ -2,7 +2,7 @@
 -include hardware/qcom/display/config/display-board.mk
 
 # LiveDisplay
-$(call soong_config_set,livedisplay_sdm,enable_dm,false)
+$(call soong_config_set_bool,livedisplay_sdm,enable_dm,false)
 
 # GPS
 TARGET_USES_HARDWARE_QCOM_GPS := false

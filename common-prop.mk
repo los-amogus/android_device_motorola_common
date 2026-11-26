@@ -77,10 +77,6 @@ PRODUCT_VENDOR_PROPERTIES += \
     dalvik.vm.background-dex2oat-threads=4 \
     dalvik.vm.image-dex2oat-threads=6
 
-# Display
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.product.model=$(PRODUCT_MODEL)
-
 # DRM service
 PRODUCT_VENDOR_PROPERTIES += \
     drm.service.enabled=true
@@ -182,10 +178,6 @@ PRODUCT_VENDOR_PROPERTIES += \
     persist.dbg.volte_avail_ovr=1 \
     persist.dbg.vt_avail_ovr=1 \
     persist.dbg.wfc_avail_ovr=1
-
-# Security
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.apk_verity.mode=2
 
 # SurfaceFlinger
 PRODUCT_VENDOR_PROPERTIES += \

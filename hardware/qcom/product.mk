@@ -159,7 +159,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/audio/$(qcom_platform) \
     vendor/qcom/opensource/data-ipa-cfg-mgr-legacy \
-    vendor/qcom/opensource/dataservices \
     hardware/qcom/display \
     hardware/qcom/display/libdebug \
 
@@ -181,7 +180,7 @@ PRODUCT_PACKAGES += \
 
 # WLAN
 PRODUCT_SOONG_NAMESPACES += \
-    hardware/qcom/wlan/legacy
+    hardware/qcom/wlan
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/hardware/qcom/bin/cnss-daemon_moto:$(TARGET_COPY_OUT_VENDOR)/bin/cnss-daemon_moto
