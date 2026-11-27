@@ -21,6 +21,7 @@
 #include <android-base/file.h>
 #include <android-base/logging.h>
 #include <fstream>
+#include <unistd.h>
 
 /* clang-format off */
 #define PPCAT_NX(A, B) A/B
@@ -30,6 +31,7 @@
 
 #define CHARGING_ATTR(x) STRINGIFY(PPCAT(/sys/class/leds/charging, x))
 
+#define PANEL_BACKLIGHT "/sys/class/backlight/panel0-backlight/"
 #define LCD_LED         "/sys/class/leds/lcd-backlight/"
 
 #define BRIGHTNESS      "brightness"
@@ -171,10 +173,18 @@ static int getMaxBrightness(std::string path) {
   return value;
 }
 
+static const std::string &getBacklightPath() {
+  static const std::string path =
+      access(PANEL_BACKLIGHT MAX_BRIGHTNESS, F_OK) == 0 ? PANEL_BACKLIGHT
+                                                        : LCD_LED;
+  return path;
+}
+
 static void handleBacklight(const HwLightState &state) {
+  const std::string &backlight = getBacklightPath();
   uint32_t brightness =
-      getScaledBrightness(state, getMaxBrightness(LCD_LED MAX_BRIGHTNESS));
-  set(LCD_LED BRIGHTNESS, brightness);
+      getScaledBrightness(state, getMaxBrightness(backlight + MAX_BRIGHTNESS));
+  set(backlight + BRIGHTNESS, brightness);
 }
 
 } // anonymous namespace
