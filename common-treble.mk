@@ -38,7 +38,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5.vendor \
     android.hardware.camera.provider@2.6.vendor \
     android.hardware.camera.provider@2.7.vendor \
-    android.frameworks.displayservice@1.0.vendor \
+    lineage.frameworks.displayservice@1.0.vendor \
     android.frameworks.sensorservice@1.0.vendor
 
 # Configstore

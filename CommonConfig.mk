@@ -124,7 +124,10 @@ $(if $(findstring true,$(call has-partition,$(partition))), \
   $(eval TARGET_COPY_OUT_$(call upper,$(partition)) := $(partition)) \
 ))
 
-# Power
+# Display
+$(call soong_config_set_bool,surfaceflinger,register_displayservice,true)
+
+# Display / Power
 SOONG_CONFIG_NAMESPACES += MOTO_COMMON_POWER
 SOONG_CONFIG_MOTO_COMMON_POWER := FB_IDLE_PATH
 SOONG_CONFIG_MOTO_COMMON_POWER_FB_IDLE_PATH ?= /sys/devices/platform/soc/5e00000.qcom,mdss_mdp/idle_state
