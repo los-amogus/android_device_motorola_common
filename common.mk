@@ -150,7 +150,10 @@ PRODUCT_SOONG_NAMESPACES += \
 ## Enable pixel soong namespace for Pixel USB and Power HAL
 PRODUCT_SOONG_NAMESPACES += \
     hardware/google/interfaces \
-    hardware/google/pixel
+    hardware/google/pixel \
+    hardware/google/pixel/pixelstats \
+    hardware/google/pixel/power-libperfmgr \
+    hardware/google/pixel/usb
 
 # APEX
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
