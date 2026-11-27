@@ -17,6 +17,8 @@ TARGET_COMPILE_WITH_MSM_KERNEL := true
 
 # Media
 TARGET_USES_ION := true
+$(call soong_config_set_bool,libion,legacy_impl,true)
+include device/lineage/sepolicy/libion/sepolicy.mk
 
 # QCOM Common Board Hook
 ifneq ($(ROM_INCLUDES_QCOM_COMMON),true)
